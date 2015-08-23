@@ -1,0 +1,2 @@
+a) O valor final é 81.
+b) Calcula a exponencial de um número.
