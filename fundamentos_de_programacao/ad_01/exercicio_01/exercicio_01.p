@@ -1,4 +1,4 @@
-program HelloWorld;
+program ad_01_exercicio_01;
 
 var
     numeroDeLinhas,i,j : Integer;
