@@ -1,0 +1,33 @@
+O pseudo algoritmo é
+
+- Seja Tamanho uma função que retorna o tamanho de uma lista
+
+tamanhoDaPilha = 0
+comandoRemoverDaPilha := 'R'
+comandoInserirNaPilha := 'I'
+asIntrucoesSaoValidas := verdadeiro
+
+para i := 1 .. Tamanho(instrucoes) faça
+  se instrucoes[i] = 1 então
+    tamanhoDaPilha := instrucoes[i]
+  senão
+    se instrucoes[i] = comandoRemoverDaPilha então
+      tamanhoDaPilha := tamanhoDaPilha - 1
+    senao
+      se instrucoes[i] = comandoInserirNaPilha então
+        tamanhoDaPilha := tamanhoDaPilha + 1
+      fim se
+    fim se
+  fim se
+
+  se tamanhoDaPilha < 0 então
+    asIntrucoesSaoValidas := falso
+    fim para
+  fim se
+fim para
+
+se asIntrucoesSaoValidas = verdadeiro então
+  escreva('As instruções fornecidas são válidas;')
+senao
+  escreva('As instruções fornecidas não são válidas;')
+fim se
