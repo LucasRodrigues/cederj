@@ -1,0 +1,31 @@
+O pseudo código da solução é
+
+função organizar (lista, tamanho)
+
+  listaOrganizada :=
+  indiceListaOrganizada := 1
+
+  para i := 1 .. tamanho faça
+
+    adicionarItem := verdadeiro
+
+    para j := 1 .. indiceListaOrganizada faça
+
+      se listaAgrupada[j] = lista[i] entao
+
+        adicionarItem := falso
+      fim se
+    fim para
+
+    se adicionarItem = verdadeiro então
+      listaAgrupada[indiceListaOrganizada] = lista[i]
+      indiceListaOrganizada := indiceListaOrganizada + 1
+    fim se
+  fim para
+
+  escreva(listaAgrupada)
+  escreva(indiceListaOrganizada)
+
+fim função
+
+A complexidade do algoritmo é O(n²) #
