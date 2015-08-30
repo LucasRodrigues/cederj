@@ -1,0 +1,51 @@
+
++ Projeto
+  - codigo (CP)
+  - nome
+  - descricao
+  - dataInicial
+  - dataFinal
+  - cliente_CNPJ (CE)
+  - gestor_Pessoa_CPF (CE)
+
++ ProjetoConsultor
+  - Projeto_Codigo (CE)
+  - consultor_Pessoa_CPF (CE)
+
++ ControleDePonto
+  - projeto_Codigo (CE)
+  - pessoa_CPF (CE)
+  - horas
+  - ano
+  - mes
+
++ Cliente
+  - CNPJ (CP)
+  - nome
+  - endereço
+  - telefone
+
++ Pessoa
+  - CPF (CP)
+  - nome
+  - telefone
+  - email
+  - pessoaTipo_Id (CE)
+
++ PessoaTipo
+  - id (CP)
+  - nome
+
+Relacionamento
+Pessoa             1:1 PessoaTipo
+Pessoa             1:n ControleDePonto
+Projeto            1:n ControleDePonto
+Pessoa (Gestor)    1:n Projetos
+Pessoa (Consultor) n:n Projetos => ProjetoConsultor 
+Cliente            1:n Projetos
+
+Siglas:
++ Entidade
+  - Atributos
+    * (CP) - Chave Primaria
+    * (CE) - Chave Estrangeira
