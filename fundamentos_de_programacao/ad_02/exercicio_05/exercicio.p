@@ -41,31 +41,25 @@ begin
   asListasEncadeadasSaoValidas:= tamanhoPonteiroA <> tamanhoPonteiroB;
 end;
 
-function encadearListas(ponteiroA: T_point; ponteiroB: T_point): T_point;
+function aListaAEMaiorQueAListaB(ponteiroA: T_point; ponteiroB: T_point):boolean;
 var
   tamanhoPonteiroA,tamanhoPonteiroB:integer;
-  maiorTamanhoPonteiro,menorTamanhoPonteiro,i,j:integer;
-  menorPonteiro,maiorPonteiro,tempPonteiro:T_point;
-  nextPoint,p:T_point;
 begin
 
-  tamanhoPonteiroA := tamanhoPonteiro(ponteiroA);
-  tamanhoPonteiroB := tamanhoPonteiro(ponteiroB);
+    tamanhoPonteiroA := tamanhoPonteiro(ponteiroA);
+    tamanhoPonteiroB := tamanhoPonteiro(ponteiroB);
 
-  if(tamanhoPonteiroA > tamanhoPonteiroB)then
-    begin
-      maiorPonteiro := ponteiroA;
-      maiorTamanhoPonteiro := tamanhoPonteiroA;
-      menorPonteiro := ponteiroB;
-      menorTamanhoPonteiro := tamanhoPonteiroB;
-    end
-  else
-    begin
-      maiorPonteiro := ponteiroB;
-      maiorTamanhoPonteiro := tamanhoPonteiroB;
-      menorPonteiro := ponteiroA;
-      menorTamanhoPonteiro := tamanhoPonteiroA;
-    end;
+    aListaAEMaiorQueAListaB := tamanhoPonteiroA > tamanhoPonteiroB;
+end;
+
+function encadearListas(maiorPonteiro: T_point; menorPonteiro: T_point): T_point;
+var
+  maiorTamanhoPonteiro,menorTamanhoPonteiro,i,j:integer;
+  nextPoint,p,tempPonteiro:T_point;
+begin
+
+  maiorTamanhoPonteiro := tamanhoPonteiro(maiorPonteiro);
+  menorTamanhoPonteiro := tamanhoPonteiro(menorPonteiro);
 
   tempPonteiro := nil;
   nextPoint := maiorPonteiro;
@@ -90,10 +84,35 @@ begin
   encadearListas := tempPonteiro;
 end;
 
+procedure exericio(listaA:T_point;listaB:T_point);
+var
+  resultado:T_point;
+begin
+
+    if(asListasEncadeadasSaoValidas(listaA,listaB)) then
+      begin
+        if(aListaAEMaiorQueAListaB(listaA,listaB))then
+          begin
+            writeln('A lista A é maior, logo no final dela será encadeada a lista B');
+            resultado := encadearListas(listaA,listaB);
+          end
+        else
+          begin
+              writeln('A lista B é maior, logo no final dela será encadeada a lista A');
+              resultado := encadearListas(listaB,listaA);
+          end;
+        writeln('Nova lista com tamanho ' + IntToStr(tamanhoPonteiro(resultado)));
+      end
+    else
+      begin
+        writeln('Listas possuem mesmo tamanho e não serão encadeadas.');
+      end;
+end;
+
 var
   i: integer;
   prim,prim2: T_point;
-  p: T_point;
+  p, resultado: T_point;
 begin
 
   prim := nil;
@@ -114,12 +133,11 @@ begin
       prim2 := p;
     end;
 
-    if(asListasEncadeadasSaoValidas(prim,prim2)) then
-      begin
-        encadearListas(prim,prim2);
-      end
-    else
-      begin
-        writeln('Listas possuem mesmo tamanho e não serão encadeadas.');
-      end;
+    {Mesmo tamanho}
+    exericio(prim,prim);
+    {Lista A maior que B}
+    exericio(prim,prim2);
+    {Lista A menor que B}
+    exericio(prim2,prim);
+
 end.
